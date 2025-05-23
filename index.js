@@ -1,22 +1,30 @@
 // note to self: run json-server --watch db.json
 
+// blank before getting
 let items = [];
 
+// gets and displays the items in the JSON
 async function get(){
+    // debug
     console.log("Gotten!");
 
+    // get the items in the json
     const response = await fetch("http://localhost:3000/items");
     const data = await response.json();
     items = data;
 
+    // update ui
     renderItems();
 }
 
 const itemsContainer = document.querySelector("#items-container");
 
+// renders the items in the JSON onto the screen
 function renderItems(){
+    // debug
     console.log(items);
 
+    // get the items onto the screen
     itemsContainer.innerHTML = `
         <ul class="item-group">
             ${items.map(item => `
@@ -26,6 +34,8 @@ function renderItems(){
 }
 
 const deleteButton = document.getElementById("delete-button");
+
+// can't pass parameters in HTML, so we add event listener instead
 deleteButton.addEventListener('click', () => {
     if (items.length > 0){
         // get last item in array
@@ -37,8 +47,8 @@ deleteButton.addEventListener('click', () => {
     }
 });
 
+// deletes the items from the JSON and renders what's left, if anything, to the screen
 async function del(idx){
-
     // debug
     console.log("del function called with argument 'idx':", idx);
     console.log("Type of 'idx':", typeof idx);
@@ -59,10 +69,12 @@ async function del(idx){
 
     // delete from front end
     const index = items.findIndex(li => li.id === idx);
+
     // make sure index was found
     if (index > -1){
         items.splice(index, 1);
     }
+    // otherwise, display warning message in console that the item does not exist in the array
     else {
         console.warn(`Item with ID ${idx} not found in frontend array to delete.`);
     }
@@ -74,7 +86,9 @@ async function del(idx){
 const textbox = document.getElementById("textbox");
 const selection = document.getElementById("p-select");
 
+// creates a new item in the JSON and renders it to the screen
 async function create() {
+    // get the info from the text boxes in the HTML
     const newItemData = {
         name: textbox.value,
         priority: parseInt(selection.value)
