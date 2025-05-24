@@ -1,19 +1,9 @@
 {
   "items": [
     {
-      "id": 1,
-      "name": "name two",
-      "priority": 1
-    },
-    {
-      "name": "Jo",
-      "priority": 6,
-      "id": 2
-    },
-    {
-      "name": "John",
-      "priority": 6,
-      "id": 3
+      "name": "Bean",
+      "priority": 9,
+      "id": 1
     }
   ]
 }

@@ -1,4 +1,4 @@
-// note to self: run json-server --watch db.json
+// note to self: run json-server --watch index.json
 
 // blank before getting
 let items = [];
@@ -11,6 +11,10 @@ async function get(){
     // get the items in the json
     const response = await fetch("http://localhost:3000/items");
     const data = await response.json();
+    if (!response.ok){
+        console.warn("Failed to fetch JSON data!");
+        return; // stop if data fetch failed
+    }
     items = data;
 
     // update ui
@@ -60,11 +64,10 @@ async function del(idx){
 
     // check to ensure backend deletion worked
     if (!response.ok) {
-        const errorText = await response.text(); // Get raw error if any
         console.error(`Failed to delete item from backend: Status: ${response.status}. Error: ${errorText}`);
-        // Potentially re-render to show original state if backend deletion failed
+        // re-render to show original state if backend deletion failed
         renderItems();
-        return; // Stop execution if backend delete failed
+        return; // stop if backend delete failed
     }
 
     // delete from front end
@@ -89,6 +92,7 @@ const selection = document.getElementById("p-select");
 // creates a new item in the JSON and renders it to the screen
 async function create() {
     // get the info from the text boxes in the HTML
+    // note: returns undefined for any empty box
     const newItemData = {
         name: textbox.value,
         priority: parseInt(selection.value)

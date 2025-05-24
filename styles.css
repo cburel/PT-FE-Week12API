@@ -1,0 +1,63 @@
+#title {
+    text-align: center;
+    margin-top: 1rem;
+}
+#items-container, #instructions {
+    margin: 1rem auto;
+    background-color: lightblue;
+}
+#items-container ul, #instructions ul {
+    margin: 1rem;
+    padding: 1rem;
+    list-style-position: inside;
+}
+#items-container ul li, #instructions li {
+    list-style: none;
+    text-align: center;
+}
+#input-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+#input-container label {
+    padding: 0.5rem;
+}
+#input-container input {
+    text-align: center;
+    max-width: 33%;
+}
+#button-container {
+    margin-top: 1rem;
+    text-align: center;
+}
+#button-container button {
+    min-width: 100px;
+    margin: 0 0.5rem;
+}
+#create-button {
+    background-color: green;
+    color: white;
+}
+#create-button:hover{
+    background-color: lightgreen;
+    color: black;
+}
+#get-button {
+    background-color: blue;
+    color: white;
+}
+#get-button:hover {
+    background-color: lightblue;
+    color: black;
+}
+#delete-button {
+    background-color: red;
+    color: white;
+}
+#delete-button:hover {
+    background-color: pink;
+    color: black;
+}
